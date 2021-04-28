@@ -125,10 +125,10 @@ export class Game {
       case 4:
         {
           this.keys = [
-            new Key('Left', 0, 68),
-            new Key('Down', 1, 70),
-            new Key('Up', 2, 74),
-            new Key('Right', 3, 75)
+            new Key('Left', 0, 90),
+            new Key('Down', 1, 88),
+            new Key('Up', 2, 188),
+            new Key('Right', 3, 190)
           ];
           break;
         }
