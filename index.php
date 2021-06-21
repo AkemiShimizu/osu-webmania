@@ -1,72 +1,73 @@
 <?php
-  header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-  header("Cache-Control: post-check=0, pre-check=0", false);
-  header("Pragma: no-cache");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 ?>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <!-- Primary Meta Tags -->
-        <title>osu!WebMania</title>
-        <meta name="title" content="osu!WebMania">
-        <meta name="description" content="osu!Mania on the web browser.">
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://osumania.herokuapp.com/">
-        <meta property="og:title" content="osu!WebMania">
-        <meta property="og:description" content="osu!mania on the web">
-        <meta property="og:image" content="thumb.png">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!-- Primary Meta Tags -->
+  <title>osu!WebMania</title>
+  <meta name="title" content="osu!WebMania">
+  <meta name="description" content="osu!Mania on the web browser.">
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:url" content="http://osumania.herokuapp.com/">
-        <meta property="twitter:title" content="osu!WebMania">
-        <meta property="twitter:description" content="osu!Mania on the web browser.">
-        <meta property="twitter:image" content="thumb.png">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://osumania.herokuapp.com/">
+  <meta property="og:title" content="osu!WebMania">
+  <meta property="og:description" content="osu!mania on the web">
+  <meta property="og:image" content="thumb.png">
 
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-        <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0">
-        <link rel="stylesheet" href="./assets/style.css" />
-    </head>
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="http://osumania.herokuapp.com/">
+  <meta property="twitter:title" content="osu!WebMania">
+  <meta property="twitter:description" content="osu!Mania on the web browser.">
+  <meta property="twitter:image" content="thumb.png">
 
-    <body>
-        <div id="load">
-          <div id="start">
-            <img src="logo.png">
-          </div>
-        </div>
-        <div id="menu">
-          <input type="file" id="beatmap">
-          <select id="difficulty">
-          </select>
-          <input type="button" id="play">
-          <br>
-          Scroll Speed: <input type="number" id="scroll" value="16">
-          <br>
-          Playback Speed: <input type="number" id="speed" value="1">
-          <div id="songs">
-          </div>
-        </div>
-        <div id="game">
-          <canvas id="game-surface" width="0" height="0">
-              Your browser does not support HTML5
-          </canvas>
-          <div id="coords">
-            <p id="time" style="visibility: hidden;"></p>
-          </div>
-          <span id="combo" style="visibility: hidden;"></span>
-          <div id="info">
-            <span id="score" style="visibility: hidden;">0000000</span>
-            <span id="acc" style="visibility: hidden;">100.00</span>
-          </div>
-        </div>
-        <!--<i>Demo is above this text</i>-->
-        <script id="play-vertex-shader" type="shader">
-            precision mediump float;
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body>
+  <div id="load">
+    <div id="start">
+      <img src="logo.png">
+    </div>
+  </div>
+  <div id="menu">
+    <input type="file" id="beatmap">
+    <select id="difficulty">
+    </select>
+    <input type="button" id="play">
+    <br>
+    Scroll Speed: <input type="number" id="scroll" value="16">
+    <br>
+    Playback Speed: <input type="number" id="speed" value="1">
+    <div id="songs">
+    </div>
+  </div>
+  <div id="game">
+    <canvas id="game-surface" width="0" height="0">
+      Your browser does not support HTML5
+    </canvas>
+    <div id="coords">
+      <p id="time" style="visibility: hidden;"></p>
+    </div>
+    <span id="combo" style="visibility: hidden;"></span>
+    <div id="info">
+      <span id="score" style="visibility: hidden;">0000000</span>
+      <span id="acc" style="visibility: hidden;">100.00</span>
+    </div>
+  </div>
+  <!--<i>Demo is above this text</i>-->
+  <script id="play-vertex-shader" type="shader">
+    precision mediump float;
 
             vec4 localPosition;
 
@@ -87,8 +88,8 @@
             }
         </script>
 
-        <script id="play-fragment-shader" type="shader">
-            precision mediump float;
+  <script id="play-fragment-shader" type="shader">
+    precision mediump float;
             varying vec2 texCoord;
 
             uniform sampler2D sampler;
@@ -102,8 +103,8 @@
             }
         </script>
 
-        <script id="background-vertex-shader" type="shader">
-            precision mediump float;
+  <script id="background-vertex-shader" type="shader">
+    precision mediump float;
 
             vec4 localPosition;
 
@@ -124,8 +125,8 @@
             }
         </script>
 
-        <script id="background-fragment-shader" type="shader">
-            precision mediump float;
+  <script id="background-fragment-shader" type="shader">
+    precision mediump float;
             varying vec2 texCoord;
 
             uniform sampler2D sampler;
@@ -135,8 +136,8 @@
             }
         </script>
 
-        <script id="score-vertex-shader" type="shader">
-            precision mediump float;
+  <script id="score-vertex-shader" type="shader">
+    precision mediump float;
 
             vec4 localPosition;
 
@@ -158,8 +159,8 @@
             }
         </script>
 
-        <script id="score-fragment-shader" type="shader">
-            precision mediump float;
+  <script id="score-fragment-shader" type="shader">
+    precision mediump float;
             varying vec2 texCoord;
 
             uniform sampler2D sampler;
@@ -168,29 +169,30 @@
               gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0) * texture2D(sampler, texCoord);
             }
         </script>
-        <script>
-          <?php
-            function getDirContents($dir, &$results = array()){
-              $files = scandir($dir);
+  <script>
+    <?php
+    function getDirContents($dir, &$results = array())
+    {
+      $files = scandir($dir);
+      while (list($key, $value) = each($files)) {
+        $path = $value;
+        if (!is_dir($path)) {
+          $results[] = $path;
+        } else if ($value != "." && $value != "..") {
+          getDirContents($path, $results);
+          $results[] = $path;
+        }
+      }
 
-              foreach($files as $key => $value){
-                  $path = $value;
-                  if(!is_dir($path)) {
-                      $results[] = $path;
-                  } else if($value != "." && $value != "..") {
-                      getDirContents($path, $results);
-                      $results[] = $path;
-                  }
-              }
+      return $results;
+    }
+    ?>
+    var maps = [];
+  </script>
+  <script src="./assets/lib/zip.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  <script type="module" src="./assets/app.js?cache-buster=<?php echo mt_rand(); ?>"></script>
+</body>
 
-              return $results;
-            }
-          ?>
-          var maps = [];
-        </script>
-        <script src="./assets/lib/zip.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-        <script type="module" src="./assets/app.js?cache-buster=<?php echo mt_rand(); ?>"></script>
-    </body>
 </html>
