@@ -2,9 +2,6 @@ import {
   AbstractRenderer
 } from './AbstractRenderer.js';
 
-import {
-  Key
-} from '../Key.js';
 
 export class ScoreRenderer extends AbstractRenderer {
   constructor(shader) {

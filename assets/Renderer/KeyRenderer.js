@@ -15,41 +15,42 @@ export class KeyRenderer extends AbstractRenderer {
 
     this.verticesBuffer = gl.createBuffer();
     this.indicesBuffer = gl.createBuffer();
+    switch (game.beatmap.keys) {
+      case 4:
+        game.renderer.textureManager.loadTexture('key_left', './assets/Keys4K/Left.png');
+        game.renderer.textureManager.loadTexture('key_up', './assets/Keys4K/Up.png');
+        game.renderer.textureManager.loadTexture('key_right', './assets/Keys4K/Right.png');
+        game.renderer.textureManager.loadTexture('key_down', './assets/Keys4K/Down.png');
 
-    if(game.beatmap.keys == 4) {
-      game.renderer.textureManager.loadTexture('key_left', './assets/Keys4K/Left.png');
-      game.renderer.textureManager.loadTexture('key_up', './assets/Keys4K/Up.png');
-      game.renderer.textureManager.loadTexture('key_right', './assets/Keys4K/Right.png');
-      game.renderer.textureManager.loadTexture('key_down', './assets/Keys4K/Down.png');
+        game.renderer.textureManager.loadTexture('key_left_pressed', './assets/Keys4K/LeftPressed.png');
+        game.renderer.textureManager.loadTexture('key_up_pressed', './assets/Keys4K/UpPressed.png');
+        game.renderer.textureManager.loadTexture('key_right_pressed', './assets/Keys4K/RightPressed.png');
+        game.renderer.textureManager.loadTexture('key_down_pressed', './assets/Keys4K/DownPressed.png');
+        break;
+      case 7:
+        game.renderer.textureManager.loadTexture('key_left', './assets/Keys7K/Left.png');
+        game.renderer.textureManager.loadTexture('key_upleft', './assets/Keys7K/Upleft.png');
+        game.renderer.textureManager.loadTexture('key_down', './assets/Keys7K/Down.png');
+        game.renderer.textureManager.loadTexture('key_center', './assets/Keys7K/Center.png');
+        game.renderer.textureManager.loadTexture('key_up', './assets/Keys7K/Up.png');
+        game.renderer.textureManager.loadTexture('key_upright', './assets/Keys7K/Upright.png');
+        game.renderer.textureManager.loadTexture('key_right', './assets/Keys7K/Right.png');
 
-      game.renderer.textureManager.loadTexture('key_left_pressed', './assets/Keys4K/LeftPressed.png');
-      game.renderer.textureManager.loadTexture('key_up_pressed', './assets/Keys4K/UpPressed.png');
-      game.renderer.textureManager.loadTexture('key_right_pressed', './assets/Keys4K/RightPressed.png');
-      game.renderer.textureManager.loadTexture('key_down_pressed', './assets/Keys4K/DownPressed.png');
-    } else if(game.beatmap.keys == 7) {
-      game.renderer.textureManager.loadTexture('key_left', './assets/Keys7K/Left.png');
-      game.renderer.textureManager.loadTexture('key_upleft', './assets/Keys7K/Upleft.png');
-      game.renderer.textureManager.loadTexture('key_down', './assets/Keys7K/Down.png');
-      game.renderer.textureManager.loadTexture('key_center', './assets/Keys7K/Center.png');
-      game.renderer.textureManager.loadTexture('key_up', './assets/Keys7K/Up.png');
-      game.renderer.textureManager.loadTexture('key_upright', './assets/Keys7K/Upright.png');
-      game.renderer.textureManager.loadTexture('key_right', './assets/Keys7K/Right.png');
-
-      game.renderer.textureManager.loadTexture('key_left_pressed', './assets/Keys7K/LeftPressed.png');
-      game.renderer.textureManager.loadTexture('key_upleft_pressed', './assets/Keys7K/UpleftPressed.png');
-      game.renderer.textureManager.loadTexture('key_down_pressed', './assets/Keys7K/DownPressed.png');
-      game.renderer.textureManager.loadTexture('key_center_pressed', './assets/Keys7K/CenterPressed.png');
-      game.renderer.textureManager.loadTexture('key_up_pressed', './assets/Keys7K/UpPressed.png');
-      game.renderer.textureManager.loadTexture('key_upright_pressed', './assets/Keys7K/UprightPressed.png');
-      game.renderer.textureManager.loadTexture('key_right_pressed', './assets/Keys7K/RightPressed.png');
+        game.renderer.textureManager.loadTexture('key_left_pressed', './assets/Keys7K/LeftPressed.png');
+        game.renderer.textureManager.loadTexture('key_upleft_pressed', './assets/Keys7K/UpleftPressed.png');
+        game.renderer.textureManager.loadTexture('key_down_pressed', './assets/Keys7K/DownPressed.png');
+        game.renderer.textureManager.loadTexture('key_center_pressed', './assets/Keys7K/CenterPressed.png');
+        game.renderer.textureManager.loadTexture('key_up_pressed', './assets/Keys7K/UpPressed.png');
+        game.renderer.textureManager.loadTexture('key_upright_pressed', './assets/Keys7K/UprightPressed.png');
+        game.renderer.textureManager.loadTexture('key_right_pressed', './assets/Keys7K/RightPressed.png');
+        break;
     }
 
     this.vertices = [
-    //        X           Y  U  V
-              0,          0, 0, 1,
-              0, 1, 0, 0,
+      0, 0, 0, 1,
+      0, 1, 0, 0,
       1, 1, 1, 0,
-      1,          0, 1, 1
+      1, 0, 1, 1
     ];
 
     this.indices = [
@@ -80,7 +81,7 @@ export class KeyRenderer extends AbstractRenderer {
 
     var x = (game.renderer.sr.width - game.keys.length * Key.width) / 2;
 
-    for(var i in game.keys) {
+    for (var i in game.keys) {
       var key = game.keys[i];
       var name = key.name.toLowerCase();
       var pressed = key.pressed ? '_pressed' : '';

@@ -1,6 +1,3 @@
-import {
-  Camera
-} from '../Camera.js';
 
 import {
   TextureManager
@@ -47,7 +44,6 @@ import {
  */
 export class Renderer {
   constructor() {
-    //this.camera = new Camera([0, 0, 1], glMatrix.toRadian(60), game.width / game.height, 0.1, 1000.0);
     this.projectionMatrix = new Float32Array(16);
 
     this.textureManager = new TextureManager();

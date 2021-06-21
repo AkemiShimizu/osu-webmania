@@ -11,20 +11,20 @@
         <!-- Primary Meta Tags -->
         <title>osu!WebMania</title>
         <meta name="title" content="osu!WebMania">
-        <meta name="description" content="osu!mania in your brower ya filthy fuckin' weebs.">
+        <meta name="description" content="osu!Mania on the web browser.">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
-        <meta property="og:url" content="http://aliremu.tk/webmania">
+        <meta property="og:url" content="https://osumania.herokuapp.com/">
         <meta property="og:title" content="osu!WebMania">
-        <meta property="og:description" content="osu!mania in your brower ya filthy fuckin' weebs.">
+        <meta property="og:description" content="osu!mania on the web">
         <meta property="og:image" content="thumb.png">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:url" content="http://aliremu.tk/webmania">
+        <meta property="twitter:url" content="http://osumania.herokuapp.com/">
         <meta property="twitter:title" content="osu!WebMania">
-        <meta property="twitter:description" content="osu!mania in your brower ya filthy fuckin' weebs.">
+        <meta property="twitter:description" content="osu!Mania on the web browser.">
         <meta property="twitter:image" content="thumb.png">
 
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -185,8 +185,6 @@
 
               return $results;
             }
-
-            //echo "var maps = " . json_encode(getDirContents('songs'));
           ?>
           var maps = [];
         </script>

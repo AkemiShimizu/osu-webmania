@@ -23,42 +23,45 @@ export class NoteRenderer extends AbstractRenderer {
     this.verticesBuffer = gl.createBuffer();
     this.uvsBuffer = gl.createBuffer();
     this.indicesBuffer = gl.createBuffer();
+    switch (game.beatmap.keys) {
+      case 4:
+        game.renderer.textureManager.loadTexture('red_left', './assets/Notes4K/RedLeft.png');
+        game.renderer.textureManager.loadTexture('red_right', './assets/Notes4K/RedRight.png');
+        game.renderer.textureManager.loadTexture('blue_up', './assets/Notes4K/BlueUp.png');
+        game.renderer.textureManager.loadTexture('blue_down', './assets/Notes4K/BlueDown.png');
 
-    if(game.beatmap.keys == 4) {
-      game.renderer.textureManager.loadTexture('red_left', './assets/Notes4K/RedLeft.png');
-      game.renderer.textureManager.loadTexture('red_right', './assets/Notes4K/RedRight.png');
-      game.renderer.textureManager.loadTexture('blue_up', './assets/Notes4K/BlueUp.png');
-      game.renderer.textureManager.loadTexture('blue_down', './assets/Notes4K/BlueDown.png');
+        game.renderer.textureManager.loadTexture('red_body', './assets/Notes4K/LNBodyRed.png');
+        game.renderer.textureManager.loadTexture('red_tail', './assets/Notes4K/LNTailRed.png');
+        game.renderer.textureManager.loadTexture('blue_body', './assets/Notes4K/LNBodyBlue.png');
+        game.renderer.textureManager.loadTexture('blue_tail', './assets/Notes4K/LNTailBlue.png');
+        break;
+      case 7:
+        game.renderer.textureManager.loadTexture('blue_left', './assets/Notes7K/Left.png');
+        game.renderer.textureManager.loadTexture('blue_right', './assets/Notes7K/Right.png');
+        game.renderer.textureManager.loadTexture('blue_up', './assets/Notes7K/Up.png');
+        game.renderer.textureManager.loadTexture('blue_down', './assets/Notes7K/Down.png');
 
-      game.renderer.textureManager.loadTexture('red_body', './assets/Notes4K/LNBodyRed.png');
-      game.renderer.textureManager.loadTexture('red_tail', './assets/Notes4K/LNTailRed.png');
-      game.renderer.textureManager.loadTexture('blue_body', './assets/Notes4K/LNBodyBlue.png');
-      game.renderer.textureManager.loadTexture('blue_tail', './assets/Notes4K/LNTailBlue.png');
-    } else if(game.beatmap.keys == 7) {
-      game.renderer.textureManager.loadTexture('blue_left', './assets/Notes7K/Left.png');
-      game.renderer.textureManager.loadTexture('blue_right', './assets/Notes7K/Right.png');
-      game.renderer.textureManager.loadTexture('blue_up', './assets/Notes7K/Up.png');
-      game.renderer.textureManager.loadTexture('blue_down', './assets/Notes7K/Down.png');
+        game.renderer.textureManager.loadTexture('center', './assets/Notes7K/Center.png');
 
-      game.renderer.textureManager.loadTexture('center', './assets/Notes7K/Center.png');
+        game.renderer.textureManager.loadTexture('red_upleft', './assets/Notes7K/Upleft.png');
+        game.renderer.textureManager.loadTexture('red_upright', './assets/Notes7K/Upright.png');
 
-      game.renderer.textureManager.loadTexture('red_upleft', './assets/Notes7K/Upleft.png');
-      game.renderer.textureManager.loadTexture('red_upright', './assets/Notes7K/Upright.png');
-
-      game.renderer.textureManager.loadTexture('red_body', './assets/Notes7K/UprightL.png');
-      game.renderer.textureManager.loadTexture('red_tail', './assets/Notes7K/UprightT.png');
-      game.renderer.textureManager.loadTexture('center_body', './assets/Notes7K/CenterL.png');
-      game.renderer.textureManager.loadTexture('center_tail', './assets/Notes7K/CenterT.png');
-      game.renderer.textureManager.loadTexture('blue_body', './assets/Notes7K/UpL.png');
-      game.renderer.textureManager.loadTexture('blue_tail', './assets/Notes7K/UpT.png');
+        game.renderer.textureManager.loadTexture('red_body', './assets/Notes7K/UprightL.png');
+        game.renderer.textureManager.loadTexture('red_tail', './assets/Notes7K/UprightT.png');
+        game.renderer.textureManager.loadTexture('center_body', './assets/Notes7K/CenterL.png');
+        game.renderer.textureManager.loadTexture('center_tail', './assets/Notes7K/CenterT.png');
+        game.renderer.textureManager.loadTexture('blue_body', './assets/Notes7K/UpL.png');
+        game.renderer.textureManager.loadTexture('blue_tail', './assets/Notes7K/UpT.png');
+        break;
     }
 
+
     this.vertices = [
-    //  X  Y
-        0, 0,
-        0, 1,
-        1, 1,
-        1, 0
+      //  X  Y
+      0, 0,
+      0, 1,
+      1, 1,
+      1, 0
     ];
 
     this.uvs = [
@@ -102,7 +105,7 @@ export class NoteRenderer extends AbstractRenderer {
     var middle = (game.renderer.sr.width - game.keys.length * Key.width) / 2;
     var now = game.now();
 
-    for(var note of game.beatmap.hitObjects) {
+    for (var note of game.beatmap.hitObjects) {
       //var note = game.beatmap.hitObjects[i];
       var texture = this.getTexture(note);
       var y = note.time - now;
@@ -111,13 +114,13 @@ export class NoteRenderer extends AbstractRenderer {
       y *= game.scrollSpeed / 16;
       y += Key.height / 2;
 
-      if(y > game.height) {
+      if (y > game.height) {
         break;
       }
 
-      if(note instanceof HoldNote) {
+      if (note instanceof HoldNote) {
         this.renderHoldNote(note, x, y, Key.height - Key.width);
-        if(note.pressed) {
+        if (note.pressed) {
           this.renderNote(note, x, Key.height - Key.width);
         } else {
           this.renderNote(note, x, y);
@@ -145,7 +148,7 @@ export class NoteRenderer extends AbstractRenderer {
   renderHoldNote(note, x, y, offset) {
     var texture = this.getTickTexture(note);
     var scale = game.scrollSpeed / 16;
-    if(note.pressed) {
+    if (note.pressed) {
       var size = Math.max(y - offset + note.duration * scale, 0);
       var pos = Key.width / 2 + offset;
       this.shader.setVec2('offset', [x, pos]);
@@ -164,7 +167,7 @@ export class NoteRenderer extends AbstractRenderer {
     var tail = note.tailNote;
     var texture = this.getTexture(tail);
     var pos = y + Key.width + note.duration * scale;
-    if(note.pressed && pos <= Key.width + offset) {
+    if (note.pressed && pos <= Key.width + offset) {
       var pos = Key.width + offset;
     }
     this.shader.setVec2('clip', [0.0, 0.5]);
@@ -179,8 +182,8 @@ export class NoteRenderer extends AbstractRenderer {
 
   getTickTexture(note) {
     var texture;
-    if(game.beatmap.keys == 4) {
-      switch(note.column) {
+    if (game.beatmap.keys == 4) {
+      switch (note.column) {
         case 0: case 3: {
           texture = game.renderer.textureManager.getTexture('red_body');
           break;
@@ -190,8 +193,8 @@ export class NoteRenderer extends AbstractRenderer {
           break;
         }
       }
-    } else if(game.beatmap.keys == 7) {
-      switch(note.column) {
+    } else if (game.beatmap.keys == 7) {
+      switch (note.column) {
         case 1: case 5: {
           texture = game.renderer.textureManager.getTexture('red_body');
           break;
@@ -200,7 +203,7 @@ export class NoteRenderer extends AbstractRenderer {
           texture = game.renderer.textureManager.getTexture('center_body');
           break;
         }
-        case 0: case 2: case 4: case 6:{
+        case 0: case 2: case 4: case 6: {
           texture = game.renderer.textureManager.getTexture('blue_body');
           break;
         }
@@ -213,9 +216,9 @@ export class NoteRenderer extends AbstractRenderer {
   getTexture(note) {
     var texture;
 
-    if(game.beatmap.keys == 4) {
-      if(note instanceof TailNote) {
-        switch(note.column) {
+    if (game.beatmap.keys == 4) {
+      if (note instanceof TailNote) {
+        switch (note.column) {
           case 0: case 3: {
             texture = game.renderer.textureManager.getTexture('red_tail');
             break;
@@ -229,7 +232,7 @@ export class NoteRenderer extends AbstractRenderer {
         return texture;
       }
 
-      switch(note.column) {
+      switch (note.column) {
         case 0: {
           texture = game.renderer.textureManager.getTexture('red_left');
           break;
@@ -247,9 +250,9 @@ export class NoteRenderer extends AbstractRenderer {
           break;
         }
       }
-    } else if(game.beatmap.keys == 7) {
-      if(note instanceof TailNote) {
-        switch(note.column) {
+    } else if (game.beatmap.keys == 7) {
+      if (note instanceof TailNote) {
+        switch (note.column) {
           case 0: case 2: case 4: case 6: {
             texture = game.renderer.textureManager.getTexture('blue_tail');
             break;
@@ -267,7 +270,7 @@ export class NoteRenderer extends AbstractRenderer {
         return texture;
       }
 
-      switch(note.column) {
+      switch (note.column) {
         case 0: {
           texture = game.renderer.textureManager.getTexture('blue_left');
           break;
